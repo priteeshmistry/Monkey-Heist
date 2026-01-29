@@ -1,0 +1,1 @@
+obj_wall_invisible.visible = false;
