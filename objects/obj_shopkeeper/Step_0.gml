@@ -1,19 +1,29 @@
 // --- PART 1: MOVEMENT & PATROL ---
 
-// Check if he hits the left (0) or right (room_width) edge
-if (x < 0 || x > room_width)
+//// Check if he hits the left (0) or right (room_width) edge
+//if (x < 0 || x > room_width)
+//{
+//    // Reverse direction
+//    hspeed = -hspeed;
+//}
+
+//// Face the direction we are moving
+
+
+// --- PART 1: MOVEMENT & WALL BOUNCE ---
+
+// Check if we are about to hit a wall OR the room edge
+if (place_meeting(x + hspeed, y, obj_wall) || x < 0 || x > room_width)
 {
     // Reverse direction
     hspeed = -hspeed;
 }
-
-// Face the direction we are moving
+//// Face the direction we are moving
 if (hspeed != 0)
 {
     if (hspeed > 0) image_angle = 0;   // Facing Right
     else image_angle = 180;            // Facing Left
 }
-
 
 // --- PART 2: VISION & KILL LOGIC ---
 
@@ -45,3 +55,6 @@ if (instance_exists(obj_monkey))
         }
     }
 }
+
+// Depth Sorting: The lower we are on screen (higher y), the closer we are to camera (lower depth)
+depth = -y;

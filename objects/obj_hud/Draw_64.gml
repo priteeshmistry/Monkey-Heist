@@ -1,4 +1,5 @@
 // Set color to white
+draw_set_font(fnt_gui_large);
 draw_set_color(c_white);
 
 // Set alignment (Top Left)
