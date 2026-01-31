@@ -27,10 +27,14 @@ draw_sprite_ext(spr_light_glow, 0, obj_monkey.x, obj_monkey.y, _flicker, _flicke
 }
 
 // B. Hole around the Shopkeeper (Flashlight)
+// B. Hole around the Shopkeeper (Flashlight)
 with (obj_shopkeeper)
 {
-    // Cut a hole for his vision cone
-    draw_sprite_ext(spr_cone, 0, x, y, 3.5, 3.5, image_angle, c_white, 1);
+    // Check if vision_angle exists to prevent errors
+    var _dir = variable_instance_exists(id, "vision_angle") ? vision_angle : 0;
+
+    // Cut a hole for his vision cone using the math angle, NOT the sprite angle
+    draw_sprite_ext(spr_cone, 0, x, y, 3.5, 3.5, _dir, c_white, 1);
 }
 
 // --- STOP CUTTING HOLES ---

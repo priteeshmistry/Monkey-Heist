@@ -15,6 +15,6 @@ if (instance_exists(obj_monkey))
     if (obj_monkey.is_invisible)
     {
         draw_set_color(c_red);
-        draw_text(10, 30, "INVISIBLE MODE ACTIVE!");
+        draw_text(10, 50, "INVISIBLE MODE ACTIVE!");
     }
 }

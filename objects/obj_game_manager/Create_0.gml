@@ -1,5 +1,6 @@
 // --- 1. SINGLETON CHECK ---
 // If I am not the original manager, I must disappear.
+global.checkpoint = Room1; // Default starting point
 if (instance_number(obj_game_manager) > 1)
 {
     instance_destroy();

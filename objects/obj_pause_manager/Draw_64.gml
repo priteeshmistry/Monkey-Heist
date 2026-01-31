@@ -26,12 +26,10 @@ if (paused)
     var _btn_h = 60;
     var _x = 640 - (_btn_w/2); // Center X
     
-    // -- RESUME BUTTON (Y = 300) --
-    // (If you have a sprite, use draw_sprite instead of draw_rectangle)
+    // -- 1. RESUME BUTTON (Y = 300) --
     draw_rectangle(_x, 300, _x + _btn_w, 300 + _btn_h, false);
-    
     draw_set_color(c_black);
-    draw_text(640, 300 + (_btn_h/2), "RESUME"); // Centered text
+    draw_text(640, 300 + (_btn_h/2), "RESUME");
     draw_set_color(c_white);
     
     if (_click && point_in_rectangle(_mx, _my, _x, 300, _x + _btn_w, 300 + _btn_h))
@@ -40,15 +38,31 @@ if (paused)
         if (sprite_exists(screenshot)) sprite_delete(screenshot);
         instance_activate_all();
     }
-    
-    // -- EXIT BUTTON (Y = 400) --
+
+    // -- 2. MENU BUTTON (Y = 400) -- (NEW)
     draw_rectangle(_x, 400, _x + _btn_w, 400 + _btn_h, false);
-    
     draw_set_color(c_black);
-    draw_text(640, 400 + (_btn_h/2), "EXIT");
+    draw_text(640, 400 + (_btn_h/2), "MENU");
     draw_set_color(c_white);
     
     if (_click && point_in_rectangle(_mx, _my, _x, 400, _x + _btn_w, 400 + _btn_h))
+    {
+        // IMPORTANT: Unpause first so objects wake up before we leave
+        paused = false;
+        if (sprite_exists(screenshot)) sprite_delete(screenshot);
+        instance_activate_all();
+        
+        // Go Home
+        room_goto(Room_Menu);
+    }
+    
+    // -- 3. EXIT BUTTON (Y = 500) -- (MOVED DOWN)
+    draw_rectangle(_x, 500, _x + _btn_w, 500 + _btn_h, false);
+    draw_set_color(c_black);
+    draw_text(640, 500 + (_btn_h/2), "EXIT");
+    draw_set_color(c_white);
+    
+    if (_click && point_in_rectangle(_mx, _my, _x, 500, _x + _btn_w, 500 + _btn_h))
     {
         game_end();
     }
